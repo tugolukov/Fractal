@@ -62,7 +62,7 @@ type Colors =
  * Тип состояния формы
  *)
 type FormState () = 
-    let mutable zoom = 100
+    let mutable zoom = 250
     let mutable center = Point(0, 0)
 
     member this.IterationLimit with get() = 100
