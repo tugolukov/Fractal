@@ -18,7 +18,7 @@ type Fractal =
     (*
      * Уравнение фрактала
      *)
-    static member FractalFunc (z: Complex) = z ** 7.0 + 0.626
+    static member FractalFunc (z: Complex) = (z + Complex(0.54, 0.54)) ** 4.0
 
     (*
      * Функция определения схождения уравнения
@@ -48,24 +48,71 @@ type Colors =
      * Получение цвета по индексу
      *)
     static member GetValidColor private v =
-        Color.FromArgb(Colors.GetValidValue (30 + v), Colors.GetValidValue(50 + v), Colors.GetValidValue(70 + v))
+        Color.FromArgb(Colors.GetValidValue (50 + v), Colors.GetValidValue(140 + v), Colors.GetValidValue(100 + v))
 
     (*
      * Получение цвета по индексу
      *)
-    static member GetColor v =
-        if (v <= 0) then Colors.GetValidColor(0)
-        elif (v > 0 && v <= 30) then Colors.GetValidColor(v * 2)
-        else Color.FromArgb(245, 250, 255)
+    static member GetColor e =
+        if (e <= 0)
+            then System.Drawing.Color.FromArgb(255, 255, 255)
+        elif (e > 0 && e <= 1)
+            then System.Drawing.Color.FromArgb(30, 20, 10)
+        elif (e > 1 && e <= 2)
+            then System.Drawing.Color.FromArgb(30, 40, 50)
+        elif (e > 2 && e <= 3)
+            then System.Drawing.Color.FromArgb(70, 60, 50)  
+        elif (e > 3 && e <= 4)
+            then System.Drawing.Color.FromArgb(70, 80, 90)
+        elif (e > 4 && e <= 5)
+            then System.Drawing.Color.FromArgb(110, 100, 90)
+        elif (e > 5 && e <= 6)
+            then System.Drawing.Color.FromArgb(110, 120, 130)
+        elif (e > 6 && e <= 7)
+            then System.Drawing.Color.FromArgb(150, 140, 130)
+        elif (e > 7 && e <= 8)
+            then System.Drawing.Color.FromArgb(150, 160, 170)
+        elif (e > 8 && e <= 9)
+            then System.Drawing.Color.FromArgb(190, 180, 170)
+        elif (e > 9 && e <= 10)
+            then System.Drawing.Color.FromArgb(190, 200, 210)
+        elif (e > 10 && e <= 11)
+            then System.Drawing.Color.FromArgb(230, 220, 210)
+        elif (e > 11 && e <= 12)
+            then System.Drawing.Color.FromArgb(230, 240, 250)
+        elif (e > 12 && e <= 13)
+            then System.Drawing.Color.FromArgb(190, 210, 250)
+        elif (e > 13 && e <= 14)
+            then System.Drawing.Color.FromArgb(190, 180, 170)
+        elif (e>14 && e<=15)
+            then System.Drawing.Color.FromArgb(150, 160, 170)
+        elif (e>15 && e<=16)
+            then System.Drawing.Color.FromArgb(150, 140, 130)
+        elif (e>16 && e<=18)
+            then System.Drawing.Color.FromArgb(110, 120, 130)
+        elif (e>18 && e<=20)
+            then System.Drawing.Color.FromArgb(110, 100, 90)
+        elif (e>20 && e<=22)
+            then System.Drawing.Color.FromArgb(70, 80, 90)
+        elif (e>22 && e<=24)
+            then System.Drawing.Color.FromArgb(70, 60, 50)
+        elif (e>24 && e<=26)
+            then System.Drawing.Color.FromArgb(40, 30, 20)
+        elif (e>26 && e<=28)
+            then System.Drawing.Color.FromArgb(30, 10, 20)
+        elif (e>28 && e<=30)
+            then System.Drawing.Color.FromArgb(30, 200, 255)
+        else
+            System.Drawing.Color.FromArgb(0, 0, 0)
 
 (*
  * Тип состояния формы
  *)
 type FormState () = 
-    let mutable zoom = 250
+    let mutable zoom = 550
     let mutable center = Point(0, 0)
 
-    member this.IterationLimit with get() = 100
+    member this.IterationLimit with get() = 50
     member this.Title with get() = "Fractal"
     member this.Width with get() = 800
     member this.Height with get() = 800
